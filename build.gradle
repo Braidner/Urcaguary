@@ -1,0 +1,97 @@
+version "1.0.2"
+
+task release {
+    doLast {
+        delete "release"
+        copy {
+            from "backend/build/libs/backend-0.0.1-SNAPSHOT.jar"
+            rename { "${project.name}.jar" }
+            into "release/"
+        }
+        copy {
+            from "backend/build/resources/main/application.yml"
+            into "release/"
+        }
+        copy {
+            from "backend/build/resources/main/${project.name}.sh"
+            into "release/"
+        }
+        copy {
+            from "backend/build/resources/main/logback.xml"
+            into "release/"
+        }
+        copy {
+            from "frontend/build"
+            into "release/frontend/build"
+        }
+    }
+}
+task source {
+    doFirst {
+        delete "source"
+    }
+    doLast {
+        //core
+        sourceCopy("gradle", true)
+        sourceCopy("build.gradle")
+        sourceCopy("gradlew")
+        sourceCopy("gradlew.bat")
+        sourceCopy("settings.gradle")
+        sourceCopy("README.md")
+        sourceCopy("CHANGELOG.md")
+
+        //backend
+        sourceCopy("backend/src/main", true)
+        sourceCopy("backend/build.gradle")
+
+        //frontend
+        sourceCopy("frontend/public", true)
+        sourceCopy("frontend/src", true)
+        sourceCopy("frontend/build.gradle")
+        sourceCopy("frontend/tsconfig.json")
+        sourceCopy("frontend/craco.config.js")
+        sourceCopy("frontend/package.json")
+    }
+}
+
+if (!project.hasProperty("buildId")) {
+    ext.buildId = "0"
+}
+
+task buildReleaseArtifact(type:Zip, dependsOn: "release") {
+    doFirst {
+        delete fileTree(dir:"${buildDir}/artifacts/", include: "**.release.zip")
+    }
+    from "release/"
+    include "*"
+    include "*/*"
+    archiveName "${project.name}-${project.version}.${buildId}.release.zip"
+    destinationDir(file("${buildDir}/artifacts"))
+}
+
+task buildSourceArtifact(type:Zip, dependsOn: "source") {
+    doFirst {
+        delete fileTree(dir:"${buildDir}/artifacts/", include: "**.sources.zip")
+    }
+    from "source/"
+    include "*"
+    include "*/*"
+    archiveName "${project.name}-${project.version}.${buildId}.sources.zip"
+    destinationDir(file("${buildDir}/artifacts"))
+}
+
+def sourceCopy(String path, boolean folder = false) {
+    String fromPath = "$path"
+    if (!folder) {
+        if (path.lastIndexOf(File.separator) > 0) {
+            path = path.substring(0, path.lastIndexOf(File.separator));
+        } else {
+            path = ""
+        }
+    }
+    String intoPath = "source/$path"
+    copy {
+        from fromPath
+        into intoPath
+    }
+}
