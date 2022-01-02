@@ -1,0 +1,16 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 1014540710019-629jcdcding29iaiq1ds4gi00eh804db.apps.googleusercontent.com
+            clientSecret: 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
+  main:
+    lazy-initialization: true
+  web:
+    resources:
+      static-locations:
+        - file:frontend/build/
+server:
+  port : 8080

@@ -1,0 +1,25 @@
+plugins {
+    id "com.github.node-gradle.node" version "3.0.1"
+}
+
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    mavenCentral()
+}
+
+node {
+    version = '17.3.0'
+    npmVersion = '8.3.0'
+    yarnVersion = '1.22.17'
+    download = true
+}
+
+//task clean {
+//    delete
+//}
+
+task build(type: YarnTask) {
+    args = ["run", "build"]
+}
+build.dependsOn('yarn_install')

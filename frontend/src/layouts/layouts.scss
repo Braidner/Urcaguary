@@ -1,0 +1,108 @@
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.layouts-auth-layout-container {
+  background: rgb(0, 0, 0) url(background-auth-dark.svg) no-repeat center 110px;
+  background-size: 100%;
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+
+  .layouts-auth-layout-content {
+    flex: 1 1;
+    padding: 32px 0 24px;
+
+    .layouts-auth-layout-top {
+      text-align: center;
+
+      .layouts-auth-layout-header {
+        height: 44px;
+        line-height: 44px;
+
+        .layouts-auth-layout-logo {
+          height: 44px;
+          margin-right: 16px;
+          vertical-align: top;
+        }
+
+        .layouts-auth-layout-title {
+          position: relative;
+          top: 2px;
+          color: rgba(255, 255, 255, 0.85);
+          font-weight: 600;
+          font-size: 33px;
+          font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+        }
+      }
+
+      .layouts-auth-layout-desc {
+        margin-top: 12px;
+        margin-bottom: 40px;
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* Fix autofill chrome color  ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: hsla(0,0%,100%,.85);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.header-logo {
+  position: relative;
+  min-width: 165px;
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+  }
+
+  h1 {
+    display: inline-block;
+    margin: 0 0 0 12px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 24px;
+    vertical-align: top;
+  }
+}
+
+.header-right-menu {
+  padding: 0 12px;
+  img {
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+  }
+
+  span {
+    color: hsla(0,0%,100%,.85);
+    vertical-align: middle;
+  }
+  &:hover {
+    color: #fff;
+    background: #095cb5;
+    border-color: #095cb5;
+  }
+
+
+}

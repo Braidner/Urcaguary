@@ -8,3 +8,5 @@
  */
 
 rootProject.name = 'urca'
+include('backend')
+include('frontend')
