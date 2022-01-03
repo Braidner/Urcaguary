@@ -9,7 +9,7 @@ repositories {
 }
 
 node {
-    version = '17.3.0'
+    version = '16.13.1'
     npmVersion = '8.3.0'
     yarnVersion = '1.22.17'
     download = true
