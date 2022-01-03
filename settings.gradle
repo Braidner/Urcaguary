@@ -10,3 +10,4 @@
 rootProject.name = 'urca'
 include('backend')
 include('frontend')
+include('binance-futures-api')

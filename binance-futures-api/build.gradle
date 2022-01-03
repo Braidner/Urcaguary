@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.binance.urca'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.squareup.okhttp3:okhttp:3.12.1"
+    implementation "com.alibaba:fastjson:1.2.47"
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+    implementation "org.apache.commons:commons-lang3:3.6"
+    implementation "commons-codec:commons-codec:1.10"
+    implementation "commons-lang:commons-lang:2.6"
+
+    testImplementation "org.powermock:powermock-api-mockito:1.7.4"
+    testImplementation "org.powermock:powermock-module-junit4:1.7.4"
+    testImplementation "junit:junit:4.12"
+}
+
