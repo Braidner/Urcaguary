@@ -9,6 +9,7 @@ import {makeAutoObservable} from "mobx";
 import {futuresApi} from "../api/FuturesApi";
 import {Candle} from "../model/AccountInfo";
 import {Card, Col, Row} from "antd";
+import {TradesPage} from "../components/TradesPage";
 
 
 export const FuturesPage = observer(() => {
@@ -27,15 +28,19 @@ export const FuturesPage = observer(() => {
     }
 
     return (
-        <Row gutter={16}>
-            <Col span={12}>
-                <TradingView symbol={symbol}/>
-            </Col>
-            <Col span={12}>
-                <FuturesCard item={position}/>
-                <Card title={"Trades"}/>
-            </Col>
-        </Row>
+        <>
+            <Row gutter={[16, 16]}>
+                <Col span={12}>
+                    <TradingView symbol={symbol}/>
+                </Col>
+                <Col span={12}>
+                    <FuturesCard item={position}/>
+                </Col>
+                <Col span={24}>
+                    <TradesPage symbol={symbol}/>
+                </Col>
+            </Row>
+        </>
     );
 });
 
@@ -54,7 +59,7 @@ const TradingView = observer(({symbol}: TradingViewType) => {
         }
         chart.current = createChart(current, {
             width: current.clientWidth,
-            height: 500,
+            height: 300,
             layout: {
                 backgroundColor: '#253248',
                 textColor: 'rgba(255, 255, 255, 0.9)',
