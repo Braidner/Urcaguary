@@ -6,8 +6,8 @@ import Space from "antd/es/space";
 import {Button} from "../components/Button";
 import {futuresStore} from "../store/FuturesStore";
 import Divider from "antd/es/divider";
-import {Card, List, Statistic} from "antd";
-import {AccountInfo, Position} from "../model/AccountInfo";
+import {List} from "antd";
+import {PositionRisk} from "../model/AccountInfo";
 import {FuturesCard} from "../components/FuturesCard";
 
 export const IndexPage: FC = observer(() => {
@@ -21,7 +21,7 @@ export const IndexPage: FC = observer(() => {
             <Col xs={{offset: 4, span: 16}} sm={{offset: 2, span: 20}}>
                 <Space direction={"vertical"} style={{width: '100%'}}>
 
-                    <Button style={{width: '100%'}} onClick={futuresStore.fetchAccountInfo}>
+                    <Button style={{width: '100%'}} onClick={futuresStore.fetchPositions}>
                         Hello
                     </Button>
 
@@ -29,7 +29,7 @@ export const IndexPage: FC = observer(() => {
                     <List
                         grid={{ gutter: 16, column: 2 }}
                         dataSource={futuresStore.actualPositions}
-                        renderItem={(item: Position) => (
+                        renderItem={(item: PositionRisk) => (
                             <List.Item>
                                 <FuturesCard item={item}/>
                             </List.Item>

@@ -1,4 +1,3 @@
-
 export class AccountInfo {
     marginBalance: number = 0;
     unrealizedProfit: number = 0;
@@ -15,6 +14,20 @@ export class Position {
     initialMargin: number = 0;
     positionSide: "LONG" | "SHORT" = "LONG"
     unrealizedProfit: number = 0;
+}
+
+export class PositionRisk {
+    entryPrice: number = 0
+    leverage: number = 0
+    maxNotionalValue: number = 0
+    liquidationPrice: number = 0
+    markPrice: number = 0
+    positionAmt: number = 0
+    unrealizedProfit: number = 0
+    symbol: string = ""
+    isolatedMargin: string = ""
+    positionSide: string = ""
+    marginType: string = ""
 }
 
 export class Candle {

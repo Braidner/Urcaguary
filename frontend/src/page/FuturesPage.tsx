@@ -15,7 +15,8 @@ export const FuturesPage = observer(() => {
     let {symbol} = useParams<{symbol: string}>();
 
     useEffect(() => {
-        futuresStore.fetchAccountInfo()
+        futuresStore.fetchAccountInfo();
+        futuresStore.fetchPositions();
     }, []);
 
     let position = futuresStore.actualPositions

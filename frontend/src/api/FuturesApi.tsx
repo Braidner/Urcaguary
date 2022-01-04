@@ -1,4 +1,4 @@
-import {AccountInfo, Candle} from "../model/AccountInfo";
+import {AccountInfo, Candle, PositionRisk} from "../model/AccountInfo";
 import axios from "axios";
 
 class FuturesApi {
@@ -10,6 +10,12 @@ class FuturesApi {
 
     async getCandlesticks(symbol: string): Promise<Candle[]> {
         let response = await axios.get(`/api/binance/futures/candlestick/${symbol}`);
+        console.log(response.data)
+        return response.data
+    }
+
+    async getPositions(): Promise<PositionRisk[]> {
+        let response = await axios.get("/api/binance/futures/positions");
         console.log(response.data)
         return response.data
     }
