@@ -16,3 +16,13 @@ export class Position {
     positionSide: "LONG" | "SHORT" = "LONG"
     unrealizedProfit: number = 0;
 }
+
+export class Candle {
+    openTime: number = 0;
+    open: number = 0;
+    high: number = 0;
+    low: number = 0;
+    close: number = 0;
+    volume: number = 0;
+    closeTime: number = 0;
+}

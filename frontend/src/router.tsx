@@ -9,6 +9,7 @@ import {LoginPage} from "./page/LoginPage";
 import {IndexPage} from "./page/IndexPage";
 import {authStore} from "./store/AuthStore";
 import {LoadingPage} from "./page/LoadingPage";
+import {FuturesPage} from "./page/FuturesPage";
 
 export default hot(module)(() => {
     return (
@@ -31,8 +32,8 @@ const Router = () => {
         <BasicLayout>
             <Routes>
                 <Route path="/" element={<IndexPage/>}/>
+                <Route path="/futures/:symbol" element={<FuturesPage/>}/>
                 <Route path="*" element={<Navigate to="/" replace/>}/>
-
             </Routes>
         </BasicLayout>
     );

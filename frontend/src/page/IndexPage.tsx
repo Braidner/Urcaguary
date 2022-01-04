@@ -16,8 +16,6 @@ export const IndexPage: FC = observer(() => {
         // futuresStore.fetchTest()
     }, [])
 
-    console.log(futuresStore.actualPositions)
-
     return (
         <Row>
             <Col xs={{offset: 4, span: 16}} sm={{offset: 2, span: 20}}>

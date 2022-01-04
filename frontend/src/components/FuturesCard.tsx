@@ -4,6 +4,7 @@ import Row from "antd/es/grid/row";
 import Col from "antd/es/grid/col";
 import React from "react";
 import {Position} from "../model/AccountInfo";
+import {Link} from "react-router-dom";
 
 type FuturesCardProps = {
     item: Position
@@ -11,7 +12,7 @@ type FuturesCardProps = {
 
 export const FuturesCard = observer(({item}: FuturesCardProps) => {
     return (
-        <Card title={`${item.symbol} x${item.leverage}`}>
+        <Card title={<Link to={`/futures/${item.symbol}`}>${item.symbol} x${item.leverage}</Link>}>
             <Row gutter={16}>
                 <Col span={8}>
                     <Statistic title="PnL" value={item.unrealizedProfit} precision={2} valueStyle={{ color: item.unrealizedProfit < 0 ? "#cf1322" : '#3f8600' }}/>

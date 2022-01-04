@@ -12,14 +12,15 @@ class FuturesStore {
         makeAutoObservable(this)
     }
 
-    get actualPositions() : Position[] {
+    get actualPositions(): Position[] {
         return this.accountInfo.positions
             .filter(value => value.entryPrice !== "0.0");
     }
 
-     fetchAccountInfo = async (): Promise<AccountInfo> => {
+    fetchAccountInfo = async (): Promise<AccountInfo> => {
         console.log(this)
         return this.accountInfo = await futuresApi.getAccountInfo();
     }
 }
+
 export const futuresStore: FuturesStore = new FuturesStore()

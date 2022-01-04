@@ -19,7 +19,7 @@ class AuthStore {
     fetchCurrentUser = async () => {
         try {
             this.loading = true;
-            let result = await axios.get("api/security/user")
+            let result = await axios.get("/api/security/user")
             this.currentUser = result.data;
         } catch (e) {
         } finally {

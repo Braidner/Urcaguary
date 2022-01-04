@@ -28,7 +28,7 @@ public class IndexCtrl {
         return "1.0.0";
     }
 
-    @GetMapping({"/", "/login"})
+    @GetMapping({"/", "/login", "futures/*"})
     public String welcome() {
         return "forward:/index.html";
     }
