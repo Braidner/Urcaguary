@@ -5,4 +5,6 @@ if (!project.hasProperty("buildId")) {
 }
 
 //for heroku CI
-task stage(dependsOn: ['build'])
+task stage() {
+    subprojects.each { dependsOn("${it.name}:build") }
+}
