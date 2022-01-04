@@ -5,5 +5,4 @@ if (!project.hasProperty("buildId")) {
 }
 
 //for heroku CI
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+task stage(dependsOn: ['build'])
