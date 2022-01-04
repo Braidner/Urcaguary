@@ -25,11 +25,6 @@ public class BinanceFuturesCtrl {
     @Autowired
     private SyncRequestClient client;
 
-    @GetMapping
-    public List<Order> test() {
-        return client.getAllOrders("LINAUSDT", null, null, null, 10);
-    }
-
     @GetMapping("candlestick/{symbol}")
     public List<Candlestick> candlesticks(@PathVariable String symbol) {
         return client.getCandlestick(symbol, CandlestickInterval.FOUR_HOURLY, null, null, 100);
