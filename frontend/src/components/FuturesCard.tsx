@@ -12,10 +12,10 @@ type FuturesCardProps = {
 
 export const FuturesCard = observer(({item}: FuturesCardProps) => {
     return (
-        <Card title={<Link to={`/futures/${item.symbol}`}>${item.symbol} x${item.leverage}</Link>}>
+        <Card title={<Link to={`/futures/${item.symbol}`}>{item.symbol} x{item.leverage}</Link>}>
             <Row gutter={16}>
                 <Col span={8}>
-                    <Statistic title="PnL" value={item.unrealizedProfit} precision={2} valueStyle={{ color: item.unrealizedProfit < 0 ? "#cf1322" : '#3f8600' }}/>
+                    <Statistic title="PnL" value={item.unrealizedProfit} precision={4} valueStyle={{ color: item.unrealizedProfit < 0 ? "#cf1322" : '#3f8600' }}/>
                 </Col>
                 <Col offset={8} span={8}>
                     <Statistic title="ROE" value={item.unrealizedProfit} precision={2} valueStyle={{ color: item.unrealizedProfit < 0 ? "#cf1322" : '#3f8600' }}/>
@@ -31,7 +31,7 @@ export const FuturesCard = observer(({item}: FuturesCardProps) => {
             </Row>
             <Row>
                 <Col span={8}>
-                    <Statistic title="Цена входа" value={item.entryPrice} precision={2} />
+                    <Statistic title="Цена входа" value={item.entryPrice} precision={4} />
                 </Col>
                 <Col span={8}>
                     <Statistic title="Цена маркировки" value={item.entryPrice} />

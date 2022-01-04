@@ -85,6 +85,14 @@ const TradingView = observer(({symbol}: TradingViewType) => {
             wickUpColor: '#838ca1',
         });
 
+        candleSeries?.applyOptions({
+            priceFormat: {
+                type: 'price',
+                precision: 6,
+                minMove: 0.000001,
+            },
+        })
+
         futuresState.fetchCandles(symbol).then(candles=> {
 
             candleSeries?.setData(candles.map(candle => {
