@@ -1,7 +1,6 @@
 import {computed, makeAutoObservable} from "mobx";
 import axios from "axios";
 import notification from "antd/es/notification";
-import {state} from "../App";
 
 
 class AuthStore {
