@@ -8,7 +8,7 @@ import {BarData, createChart, CrosshairMode, IChartApi} from "lightweight-charts
 import {makeAutoObservable} from "mobx";
 import {futuresApi} from "../api/FuturesApi";
 import {Candle} from "../model/AccountInfo";
-import {Col, Row} from "antd";
+import {Card, Col, Row} from "antd";
 
 
 export const FuturesPage = observer(() => {
@@ -32,6 +32,7 @@ export const FuturesPage = observer(() => {
             </Col>
             <Col span={12}>
                 <FuturesCard item={position}/>
+                <Card title={"Trades"}/>
             </Col>
         </Row>
     );
