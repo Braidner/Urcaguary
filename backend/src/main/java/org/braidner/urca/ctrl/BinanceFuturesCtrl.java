@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/binance/futures")
@@ -40,7 +42,9 @@ public class BinanceFuturesCtrl {
 
     @GetMapping("positions")
     public List<PositionRisk> positions() {
-        return client.getPositionRisk();
+        return client.getPositionRisk().stream()
+                .filter(value -> value.getPositionAmt().compareTo(BigDecimal.ZERO) > 0)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("exchange")
@@ -50,6 +54,8 @@ public class BinanceFuturesCtrl {
 
     @GetMapping("account")
     public AccountInformation account() {
-        return client.getAccountInformation();
+        AccountInformation information = client.getAccountInformation();
+        information.getPositions().removeIf(position -> position.getEntryPrice().equals("0.0"));
+        return information;
     }
 }
