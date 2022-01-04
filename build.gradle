@@ -3,3 +3,7 @@ version "1.0.2"
 if (!project.hasProperty("buildId")) {
     ext.buildId = "0"
 }
+
+//for heroku CI
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
