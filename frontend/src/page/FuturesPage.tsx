@@ -8,6 +8,7 @@ import {BarData, createChart, CrosshairMode, IChartApi} from "lightweight-charts
 import {makeAutoObservable} from "mobx";
 import {futuresApi} from "../api/FuturesApi";
 import {Candle} from "../model/AccountInfo";
+import {Col, Row} from "antd";
 
 
 export const FuturesPage = observer(() => {
@@ -25,10 +26,14 @@ export const FuturesPage = observer(() => {
     }
 
     return (
-        <div>
-            <div><FuturesCard item={position}/></div>
-            <div style={{width: '100%', height: '400px'}}><TradingView symbol={symbol}/></div>
-        </div>
+        <Row gutter={16}>
+            <Col span={12}>
+                <TradingView symbol={symbol}/>
+            </Col>
+            <Col span={12}>
+                <FuturesCard item={position}/>
+            </Col>
+        </Row>
     );
 });
 
@@ -45,10 +50,9 @@ const TradingView = observer(({symbol}: TradingViewType) => {
         if (!current) {
             return;
         }
-
         chart.current = createChart(current, {
             width: current.clientWidth,
-            height: current.clientHeight,
+            height: 500,
             layout: {
                 backgroundColor: '#253248',
                 textColor: 'rgba(255, 255, 255, 0.9)',
@@ -115,9 +119,7 @@ const TradingView = observer(({symbol}: TradingViewType) => {
     }, []);
 
     return (
-        <div className="App">
-            <div ref={chartContainerRef} className="chart-container" />
-        </div>
+        <div ref={chartContainerRef} className="chart-container" />
     );
 });
 
