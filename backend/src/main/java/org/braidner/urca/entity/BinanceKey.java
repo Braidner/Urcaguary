@@ -12,9 +12,8 @@ public class BinanceKey {
     @Id
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private User owner;
+    @Column(name = "owner_id")
+    private String username;
 
     private String name;
     private String key;
