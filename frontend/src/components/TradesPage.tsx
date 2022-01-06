@@ -2,7 +2,7 @@ import {observer} from "mobx-react";
 import {useEffect, useState} from "react";
 import {futuresApi} from "../api/FuturesApi";
 import {Card, Table} from "antd";
-import {MyTrade, Trade} from "../model/Trade";
+import {MyTrade} from "../model/Trade";
 import {ColumnsType} from "antd/es/table";
 
 export type TradesPageType = {
