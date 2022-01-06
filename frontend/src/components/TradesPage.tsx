@@ -3,18 +3,19 @@ import {useEffect, useState} from "react";
 import {futuresApi} from "../api/FuturesApi";
 import {Card, Table} from "antd";
 import {MyTrade, Trade} from "../model/Trade";
+import {ColumnsType} from "antd/es/table";
 
 export type TradesPageType = {
    symbol: string;
 }
 
 export const TradesPage = observer(({symbol}: TradesPageType) => {
-   let [trades, setTrades] = useState<MyTrade[]>([]);
+   let [trades, setTrades] = useState<any[]>([]);
    useEffect(() => {
       futuresApi.getTrades(symbol).then(setTrades)
    }, []);
 
-   const columns = [
+   const columns: ColumnsType<MyTrade> = [
       // {title: 'isBuyer', dataIndex: 'isBuyer', key: 'isBuyer'},
       // {title: 'isMaker', dataIndex: 'isMaker', key: 'isMaker'},
       {title: 'commission', dataIndex: 'commission', key: 'commission'},
@@ -27,13 +28,13 @@ export const TradesPage = observer(({symbol}: TradesPageType) => {
       {title: 'realizedPnl', dataIndex: 'realizedPnl', key: 'realizedPnl'},
       {title: 'side', dataIndex: 'side', key: 'side'},
       {title: 'positionSide', dataIndex: 'positionSide', key: 'positionSide'},
-      {title: 'symbol', dataIndex: 'symbol', key: 'symbol'},
+      // {title: 'symbol', dataIndex: 'symbol', key: 'symbol'},
       {title: 'time', dataIndex: 'time', key: 'time', render: (item: number) => new Date(item).toISOString()},
    ]
 
    return (
        <Card title={`Trades ${symbol}`}>
-          <Table columns={columns} dataSource={trades} />
+          <Table dataSource={trades} columns={columns}/>
        </Card>
    )
 });
