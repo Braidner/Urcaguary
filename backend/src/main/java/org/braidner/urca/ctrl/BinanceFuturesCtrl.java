@@ -23,7 +23,7 @@ public class BinanceFuturesCtrl {
 
     @GetMapping("candlestick/{symbol}")
     public List<Candlestick> candlesticks(@PathVariable String symbol) {
-        return client.getCandlestick(symbol, CandlestickInterval.FOUR_HOURLY, null, null, 100);
+        return client.getCandlestick(symbol, CandlestickInterval.FOUR_HOURLY, null, null, 500);
     }
 
     @GetMapping("trades/{symbol}")

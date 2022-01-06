@@ -1,7 +1,7 @@
 export class AccountInfo {
-    marginBalance: number = 0;
-    unrealizedProfit: number = 0;
-    walletBalance: number = 0;
+    totalMarginBalance: number = 0;
+    totalUnrealizedProfit: number = 0;
+    totalWalletBalance: number = 0;
     positions: Position[] = []
 }
 
