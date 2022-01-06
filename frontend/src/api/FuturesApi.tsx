@@ -1,6 +1,6 @@
 import {AccountInfo, Candle, PositionRisk} from "../model/AccountInfo";
 import axios from "axios";
-import {Trade} from "../model/Trade";
+import {MyTrade, Trade} from "../model/Trade";
 
 class FuturesApi {
     async getAccountInfo(): Promise<AccountInfo> {
@@ -21,7 +21,7 @@ class FuturesApi {
         return response.data
     }
 
-    async getTrades(symbol: string): Promise<Trade[]> {
+    async getTrades(symbol: string): Promise<MyTrade[]> {
         let response = await axios.get(`/api/binance/futures/trades/${symbol}`);
         console.log(response.data)
         return response.data

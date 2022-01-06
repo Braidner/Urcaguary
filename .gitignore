@@ -1,6 +1,7 @@
 .idea
 .gradle
-/build/
+build
+logs
 node_modules
 
 # Ignore Gradle GUI config

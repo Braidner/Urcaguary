@@ -35,15 +35,13 @@ const HeaderBar = () => {
                 </Link>
             </div>
             <Space>
-                <Dropdown className="header-right-menu" overlay={() => {
-                    return (
-                        <Menu style={{width: '150px'}}>
-                            <Menu.Item icon={<UserOutlined/>} key="logout">
-                                Выйти
-                            </Menu.Item>
-                        </Menu>
-                    )
-                }}>
+                <Dropdown className="header-right-menu" overlay={(
+                    <Menu style={{width: '150px'}}>
+                        <Menu.Item icon={<UserOutlined/>} key="logout">
+                            Выйти
+                        </Menu.Item>
+                    </Menu>
+                )}>
                     <Space>
                         <img src={user} alt="user"/>
                         <span className="anticon">{authStore.currentUser?.username}</span>

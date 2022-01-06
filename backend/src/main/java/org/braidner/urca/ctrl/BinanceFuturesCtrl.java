@@ -4,15 +4,11 @@ import com.binance.client.SyncRequestClient;
 import com.binance.client.model.enums.CandlestickInterval;
 import com.binance.client.model.market.Candlestick;
 import com.binance.client.model.market.ExchangeInformation;
-import com.binance.client.model.market.Trade;
 import com.binance.client.model.trade.AccountInformation;
-import com.binance.client.model.trade.Order;
+import com.binance.client.model.trade.MyTrade;
 import com.binance.client.model.trade.PositionRisk;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -31,8 +27,8 @@ public class BinanceFuturesCtrl {
     }
 
     @GetMapping("trades/{symbol}")
-    public List<Trade> trades(@PathVariable String symbol) {
-        return client.getRecentTrades(symbol, 100);
+    public List<MyTrade> trades(@PathVariable String symbol, @RequestParam(required = false) Long fromId) {
+        return client.getAccountTrades(symbol, null, null, fromId, 100);
     }
 
     @GetMapping("positions")
