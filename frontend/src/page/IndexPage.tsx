@@ -42,21 +42,23 @@ export const IndexPage: FC = observer(() => {
                         style={{
                             margin: '0 32px',
                         }}
-                    />                    <Statistic
+                    />
+                    <Statistic
                         title="Маржа"
                         prefix="$"
-                        precision={2}
+                        precision={0}
                         value={futuresStore.accountInfo.totalMarginBalance}
-                        style={{
-                            margin: '0 32px',
-                        }}
                     />
-                    <Statistic title="Баланс" prefix="$" precision={2} value={futuresStore.accountInfo.totalWalletBalance} />
+                    <Statistic title="Баланс" prefix="$" precision={0}
+                               value={futuresStore.accountInfo.totalWalletBalance}
+                               style={{
+                                   margin: '0 32px',
+                               }}/>
                 </Row>
             </PageHeader>
             <Row>
                 <Col xs={{offset: 4, span: 16}} sm={{offset: 2, span: 20}}>
-                    <Space direction={"vertical"} style={{width: '100%'}}>
+                    <Space direction={"vertical"}>
                         <List
                             grid={{ gutter: 16, column: 2 , xs: 1, sm: 1, md: 2}}
                             dataSource={futuresStore.actualPositions}

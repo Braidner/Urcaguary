@@ -4,12 +4,14 @@ import {FuturesCard} from "../components/FuturesCard";
 import {useParams} from "react-router-dom";
 import {futuresStore} from "../store/FuturesStore";
 import {LoadingPage} from "./LoadingPage";
-import {BarData, createChart, CrosshairMode, IChartApi} from "lightweight-charts";
+import {BarData, createChart, CrosshairMode, IChartApi, LineStyle, PriceLineOptions} from "lightweight-charts";
 import {makeAutoObservable} from "mobx";
 import {futuresApi} from "../api/FuturesApi";
 import {Candle} from "../model/AccountInfo";
-import {Card, Col, Row} from "antd";
+import {Card, Col, Form, Input, Row, Select} from "antd";
 import {TradesPage} from "../components/TradesPage";
+import {BuyFutures} from "../components/BuyFutures";
+import {Button} from "../components/Button";
 
 
 export const FuturesPage = observer(() => {
@@ -30,11 +32,14 @@ export const FuturesPage = observer(() => {
     return (
         <>
             <Row gutter={[16, 16]}>
-                <Col span={12}>
+                <Col span={8}>
                     <TradingView symbol={symbol}/>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
                     <FuturesCard item={position}/>
+                </Col>
+                <Col span={8}>
+                    <BuyFutures item={position}/>
                 </Col>
                 <Col span={24}>
                     <TradesPage symbol={symbol}/>
@@ -47,6 +52,9 @@ export const FuturesPage = observer(() => {
 type TradingViewType = {
     symbol: string;
 }
+export const TradingViewStore = () => {
+
+}
 
 const TradingView = observer(({symbol}: TradingViewType) => {
     const chartContainerRef = useRef<HTMLDivElement | null>(null);
@@ -57,7 +65,7 @@ const TradingView = observer(({symbol}: TradingViewType) => {
         if (!current) {
             return;
         }
-        chart.current = createChart(current, {
+        let newChart = chart.current = createChart(current, {
             width: current.clientWidth,
             height: 300,
             layout: {
@@ -83,7 +91,7 @@ const TradingView = observer(({symbol}: TradingViewType) => {
             // },
         });
 
-        const candleSeries = chart.current?.addCandlestickSeries({
+        const candleSeries = newChart.addCandlestickSeries({
             upColor: '#4bffb5',
             downColor: '#ff4976',
             borderDownColor: '#ff4976',
@@ -91,6 +99,25 @@ const TradingView = observer(({symbol}: TradingViewType) => {
             wickDownColor: '#838ca1',
             wickUpColor: '#838ca1',
         });
+
+        let series = newChart.addLineSeries({
+            color: 'rgb(0, 120, 255)',
+            lineWidth: 2,
+            crosshairMarkerVisible: false,
+            lastValueVisible: false,
+            priceLineVisible: false,
+        });
+
+        let maxPriceLine: PriceLineOptions = {
+            price: 100,
+            color: '#be1238',
+            lineWidth: 2,
+            lineStyle: LineStyle.Solid,
+            axisLabelVisible: true,
+            title: 'maximum price',
+        }
+
+        series.createPriceLine(maxPriceLine)
 
         candleSeries?.applyOptions({
             priceFormat: {
@@ -133,8 +160,40 @@ const TradingView = observer(({symbol}: TradingViewType) => {
         return () => resizeObserver.current?.disconnect();
     }, []);
 
+    const [form] = Form.useForm();
+
     return (
-        <div ref={chartContainerRef} className="chart-container" />
+        <Row>
+            <Col span={16}>
+                <div ref={chartContainerRef} className="chart-container" />
+            </Col>
+            <Col span={8}>
+
+            </Col>
+            <Card title="Купить">
+                <Form form={form} layout="vertical" initialValues={{price: 0, type: 'LIMIT'}}>
+                    <Form.Item name="type" label="" colon={false}>
+                        <Select>
+                            <Select.Option value="LIMIT">Лимитный</Select.Option>
+                            <Select.Option value="MARKET">Рыночный</Select.Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item label="Цена" name="price">
+                        <Input placeholder="Цена"/>
+                    </Form.Item>
+                    <Form.Item label=" " colon={false}>
+                        <Button type="default" htmlType="button">
+                            Добавить ведро
+                        </Button>
+                    </Form.Item>
+                    <Form.Item label=" " colon={false}>
+                        <Button type="default" htmlType="button">
+                            Разместить сделку
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Card>
+        </Row>
     );
 });
 
