@@ -10,22 +10,25 @@
     "@types/react-dom": "^17.0.11",
     "antd": "^4.18.2",
     "axios": "^0.24.0",
+    "d3-format": "^3.1.0",
+    "lightweight-charts": "^3.7.0",
     "mobx": "^6.3.10",
     "mobx-react": "^7.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-financial-charts": "^1.2.0",
     "react-hot-loader": "^4.13.0",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
+    "react-scripts": "4.0.3",
+    "usehooks-ts": "^2.2.0",
     "sass": "^1.45.2",
     "source-map-explorer": "^2.5.2",
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.2",
-    "lightweight-charts": "^3.7.0",
     "yarn": "^1.22.17"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "craco start --experimental-specifier-resolution=node",
     "build": "craco build",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
@@ -45,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/d3-format": "3.0.1"
   }
 }

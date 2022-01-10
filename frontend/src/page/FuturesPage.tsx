@@ -12,6 +12,7 @@ import {Card, Col, Form, Input, Row, Select} from "antd";
 import {TradesPage} from "../components/TradesPage";
 import {BuyFutures} from "../components/BuyFutures";
 import {Button} from "../components/Button";
+import {TradingChart} from "../components/TradingChart";
 
 
 export const FuturesPage = observer(() => {
@@ -43,6 +44,9 @@ export const FuturesPage = observer(() => {
                 </Col>
                 <Col span={24}>
                     <TradesPage symbol={symbol}/>
+                </Col>
+                <Col span={24}>
+                    <TradingChart symbol={symbol}/>
                 </Col>
             </Row>
         </>

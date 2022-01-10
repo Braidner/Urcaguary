@@ -1,5 +1,5 @@
 // const {} = require("@craco/craco");
-// const path = require('path');
+const path = require('path');
 //
 // module.exports = {
 //     devServer: {
@@ -43,9 +43,16 @@
 
 module.exports = {
     devServer: (devServerConfig) => {
-        devServerConfig.devMiddleware = {
-            writeToDisk: true
-        }
+        // devServerConfig.devMiddleware = {
+        //     writeToDisk: true
+        // }
+        devServerConfig.writeToDisk = true
         return devServerConfig;
     },
+    webpack: {
+        configure: (webpackConfig, { env, paths }) => {
+            paths.appBuild = webpackConfig.output.path = path.resolve('build');
+            return webpackConfig
+        }
+    }
 };
